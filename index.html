@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TUGAS MINGGU 6 (2)</title>
+    <style>
+        #map {
+          width: 1500px;
+          height: 500px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+        crossorigin=""></script>
+</head>
+<body>
+    <h1><center>Peta Populasi RT 17 Dusun Gajahan Desa Seloboro</center></h1>
+    <div id="map"></div>
+    <script>
+        //Menampilkan base map//
+        var map = L.map('map').setView([-7.614475662770061, 110.28366386890411],17)
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+        function onMapClick (e) { L.popup () .setLatLng(e.latlng) .setContent('Koordinat disiini'+' '+ e.latlng.toString()) .openOn(map); } map.on('click', onMapClick);
+
+       //batas RT
+       var RT =[{"type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_RT": "RT17, Dusun Gajahan, Desa Seloboro",
+        "populasi": "93 orang",
+        "KK_RT": "31 keluraga"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              110.28529465198517,
+              -7.614427808731517
+            ],
+            [
+              110.28446853160858,
+              -7.61353984949128
+            ],
+            [
+              110.28292894363403,
+              -7.613390969917636
+            ],
+            [
+              110.28186276555061,
+              -7.614310832170343
+            ],
+            [
+              110.28450071811676,
+              -7.616049525948924
+            ],
+            [
+              110.28529465198517,
+              -7.614427808731517
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}];
+  var layerGroup = L.geoJSON(RT, {
+  onEachFeature: function (feature, layer) {
+    layer.bindPopup('<h1>'+feature.properties.nama_RT+'</h1>'+feature.properties.populasi+'</p>'+feature.properties.KK_RT+'</p>');
+  }
+}).addTo(map);
+
+var KK =[{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Ibnu",
+        "jumlah": "4 anggota",
+        "LK": "2 laki-laki",
+        "PR": "2 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28399646282196,
+          -7.613826974237268
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Banu",
+        "jumlah": "4 anggota",
+        "LK": "2 laki-laki",
+        "PR": "2 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28499022126198,
+          -7.614511553295473
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Sukistiyanto",
+        "jumlah": "3 anggota",
+        "LK": "1 laki-laki",
+        "PR": "2 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28493791818617,
+          -7.614710945048551
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Ngatun",
+        "jumlah": "3 anggota",
+        "LK": "2 laki-laki",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28489232063293,
+          -7.614815293362345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Wahyu",
+        "jumlah": "4 anggota",
+        "LK": "1 laki-laki",
+        "PR": "3 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28480648994446,
+          -7.614746835554244
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Joyo",
+        "jumlah": "1 anggota",
+        "LK": "-",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28400182723999,
+          -7.614310832170343
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Suyanto",
+        "jumlah": "2anggota",
+        "LK": "1 laki-laki",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28361693024635,
+          -7.614777408945613
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Mugiyono",
+        "jumlah": "3 anggota",
+        "LK": "1 laki-laki",
+        "PR": "2 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28350360691547,
+          -7.6147661100838455
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Wito",
+        "jumlah": "4 anggota",
+        "LK": "3 laki-laki",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28319448232651,
+          -7.6142815880250625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Sudignyo",
+        "jumlah": "1 anggota",
+        "PR": "1 Perempuan",
+        "LK": "-"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28324946761131,
+          -7.614736201330647
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Murtasilah",
+        "jumlah": "1 anggota",
+        "LK": "-",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28313547372818,
+          -7.614589980729418
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Murtadho",
+        "jumlah": "4 anggota",
+        "LK": "1 laki-laki",
+        "PR": "3 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28304763138294,
+          -7.614542126703622
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Kelik",
+        "jumlah": "4 anggota",
+        "LK": "1 laki-laki",
+        "PR": "3 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28301879763603,
+          -7.614466357818544
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Napsinah",
+        "jumlah": "1 anggota",
+        "LK": "-",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28306774795055,
+          -7.614409198826194
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Isti",
+        "jumlah": "3 anggota",
+        "LK": "1 laki-laki",
+        "PR": "2 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.2829671651125,
+          -7.614389924280537
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Sutarwan",
+        "jumlah": "3 anggota",
+        "LK": "2 laki-laki",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28284177184103,
+          -7.6142815880250625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Nahrowi",
+        "jumlah": "2 anggota",
+        "LK": "1 laki-laki",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28263792395592,
+          -7.614443760078292
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Imdhaturohman",
+        "jumlah": "3 anggota",
+        "LK": "1 laki-laki",
+        "PR": "2 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28273314237595,
+          -7.614473004212504
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Sri Umi",
+        "jumlah": "3 anggota",
+        "LK": "-",
+        "PR": "3 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.2829611301422,
+          -7.614746835554244
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Dodi",
+        "jumlah": "4 anggota",
+        "LK": "3 laki-laki",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.283013433218,
+          -7.614802665223816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Zae",
+        "jumlah": "4 anggota",
+        "LK": "3 laki-laki",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28277605772018,
+          -7.614661761758067
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Siti Fatimah",
+        "jumlah": "1 anggota",
+        "LK": "-",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28248369693756,
+          -7.61452085824601
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Suharti",
+        "jumlah": "2 anggota",
+        "LK": "1 laki-laki",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28256416320801,
+          -7.6142815880250625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Muhdi",
+        "jumlah": "2 anggota",
+        "LK": "1 laki-laki",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28250381350517,
+          -7.61436001550108
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "jumlah": "5 anggota",
+        "nama_kk": "Agus",
+        "LK": "2 laki-laki",
+        "PR": "3 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28265401721,
+          -7.614317478566721
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Ponirah",
+        "jumlah": "2 anggota",
+        "LK": "1 laki-laki",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28251588344574,
+          -7.614235063244363
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Tari",
+        "jumlah": "4 anggota",
+        "LK": "2 laki-laki",
+        "PR": "2 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28239250183105,
+          -7.614398564594214
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Riyadi",
+        "jumlah": "3 anggota",
+        "LK": "2 laki-laki",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28238445520401,
+          -7.614253673157243
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Sulistiyanto",
+        "jumlah": "4 anggota",
+        "LK": "3 laki-laki",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.2823106944561,
+          -7.614490284836333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Sundarwi",
+        "jumlah": "1 anggota",
+        "LK": "1 laki-laki",
+        "PR": "-"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28230398893356,
+          -7.614330771359159
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama_kk": "Hadi",
+        "jumlah": "1 anggota",
+        "LK": "-",
+        "PR": "1 Perempuan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.28221815824507,
+          -7.614427808731517
+        ]
+      }
+    }
+  ]
+}];
+var layerGroup = L.geoJSON(KK, {
+  onEachFeature: function (feature, layer) {
+    layer.bindPopup('<h1>'+feature.properties.nama_kk+'</h1>'+feature.properties.jumlah+'</p>'+feature.properties.LK+'</p>'+feature.properties.PR+'</p>');
+  }
+}).addTo(map);
+        </script>
+</body>
+</html>
